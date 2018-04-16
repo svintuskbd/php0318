@@ -10,3 +10,8 @@ function mailTo($arg)
 {
     //    TODO qwerty....
 }
+
+function maiToCustomer($arg)
+{
+    //    TODO qwerty....
+}
