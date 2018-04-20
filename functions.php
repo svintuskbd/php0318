@@ -1,4 +1,34 @@
 <?php
+session_start();
+
+const LOGIN = 'login';
+const PASSWORD = 'password';
+
+function login(array $post)
+{
+    $check = null;
+    if (isset($post['login']) && isset($post['password'])) {
+        if ($post['login'] == LOGIN && $post['password'] == PASSWORD) {
+            $check = true;
+        }
+    }
+
+    if ($check) {
+        $_SESSION['access'] = true;
+        $_SESSION['login'] = $post['login'];
+        header('Location: /blog.php');
+        exit;
+    } else {
+        $_SESSION['access'] = false;
+        header('Location: /access_denied.php');
+        exit;
+    }
+}
+
+function viewUserName()
+{
+    echo isset($_SESSION['login']) ? $_SESSION['login'] : null;
+}
 
 function customArrayMerge($arr1, $arr2)
 {
@@ -100,7 +130,7 @@ function myTrim($str)
 
 function calc()
 {
-    if($_POST) {
+    if ($_POST) {
         $operand = $_POST['operand'];
         $val1 = $_POST['val1'];
         $val2 = $_POST['val2'];

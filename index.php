@@ -1,31 +1,36 @@
 <?php require_once 'functions.php'; ?>
-<?php $result = calc(); ?>
+<?php
+if (isset($_GET) && key_exists('logout', $_GET)) {
+    session_destroy();
+    header('Location: /');
+    exit;
+}
+
+if (isset($_POST) && !empty($_POST)) {
+    login($_POST);
+}
+
+if (isset($_SESSION['access']) && $_SESSION['access']) {
+    header('Location: /blog.php');
+    exit;
+}
+?>
 
 <!DOCTYPE HTML>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Тег FORM</title>
-    </head>
+<head>
+    <meta charset="utf-8">
+    <title>Тег FORM</title>
+</head>
 
-    <body>
+<body>
 
-    <form action="/" method="GET">
-        <input type="text" name="s" value="" placeholder="search">
-    </form>
+<form action="" method="POST">
+    <input type="text" name="login" value=""><Br></p>
+    <input type="password" name="password" value=""><Br></p>
+    <p><input type="submit"></p>
+</form>
 
-        <form action="" method="POST">
-            <p><b>Custom calc</b></p>
-            <p><input type="number" name="val1" value="<?php echo isset($_POST['val1'])? $_POST['val1'] : ''; ?>"><Br></p>
-            <p><input type="radio" name="operand" value="*">*<Br>
-                <input type="radio" name="operand" value="/">/<Br>
-                <input type="radio" name="operand" value="+">+</Br>
-                <input type="radio" name="operand" value="-">-</p>
-            <p><input type="number" name="val2" value="<?php echo isset($_POST['val2'])? $_POST['val2'] : ''; ?>"><Br></p>
-            <p><input type="submit"></p>
-        </form>
-        <p>Result: <?php echo $result; ?></p>
-
-    </body>
+</body>
 </html>
 
