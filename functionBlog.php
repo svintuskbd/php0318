@@ -1,5 +1,5 @@
 <?php
-function getArticle()
+function getArticles()
 {
     $arr = [];
     for ($i = 0; $i <= 5; $i++) {

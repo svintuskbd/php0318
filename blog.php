@@ -19,11 +19,27 @@ if (isset($_SESSION['access']) && !$_SESSION['access']) {
     <a href="/?logout">Logout</a>
     <p>Hello "<?php viewUserName(); ?>"</p>
 
+
     <div class="blog">
-        <div class="article">
-            <h1>title</h1>
-            <p>content</p>
-        </div>
+        <?php $articles = getArticles(); ?>
+
+        <?php if ($articles) : ?>
+
+            <?php foreach ($articles as $article) : ?>
+
+                <div class="article">
+                    <a href="/singleArticle.php?title=<?= $article['title']; ?>&content=<?= $article['content']; ?>">
+                        <h1><?php echo $article['title']; ?></h1>
+                    </a>
+                    <p><?php echo $article['content']; ?></p>
+                </div>
+
+            <?php endforeach; ?>
+
+        <?php else: ?>
+            <p>Articles not found!!!!</p>
+        <?php endif; ?>
+
     </div>
 </div>
 
