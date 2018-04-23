@@ -18,6 +18,13 @@ if (isset($_SESSION['access']) && !$_SESSION['access']) {
 <div>
     <a href="/?logout">Logout</a>
     <p>Hello "<?php viewUserName(); ?>"</p>
+
+    <div class="blog">
+        <div class="article">
+            <h1>title</h1>
+            <p>content</p>
+        </div>
+    </div>
 </div>
 
 </body>

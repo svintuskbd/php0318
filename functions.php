@@ -1,14 +1,15 @@
 <?php
 session_start();
+require_once 'functionBlog.php';
 
 const LOGIN = 'login';
-const PASSWORD = 'password';
+const PASSWORD = '5f4dcc3b5aa765d61d8327deb882cf99';
 
 function login(array $post)
 {
     $check = null;
     if (isset($post['login']) && isset($post['password'])) {
-        if ($post['login'] == LOGIN && $post['password'] == PASSWORD) {
+        if ($post['login'] == LOGIN && md5($post['password']) === PASSWORD) {
             $check = true;
         }
     }
